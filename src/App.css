@@ -1,38 +1,445 @@
-.App {
+/* src/App.css */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4cc9f0;
+  --success-color: #4caf50;
+  --error-color: #f44336;
+  --warning-color: #ff9800;
+  --light-bg: #f8f9fa;
+  --dark-text: #212529;
+  --light-text: #f8f9fa;
+  --border-color: #dee2e6;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fb;
+  color: var(--dark-text);
+  line-height: 1.6;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-header {
   text-align: center;
+  padding: 30px 0;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+  padding: 12px 25px;
+  margin: 0 5px;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background-color: rgba(67, 97, 238, 0.1);
+  color: var(--primary-color);
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--primary-color);
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.content-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  padding: 30px;
+  margin-bottom: 30px;
+  min-height: 500px;
+}
+
+.form-container, .libros-container, .buscar-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px 15px 10px 35px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.form-hint {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.submit-btn:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.libros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.libro-card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: white;
+}
+
+.libro-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h3 {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.book-id {
+  font-size: 0.8rem;
+  color: #6c757d;
+  background-color: #e9ecef;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.card-body p {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 40px 0;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container, .empty-state {
+  text-align: center;
+  padding: 30px;
+  background-color: #fff8f8;
+  border: 1px solid #ffcccc;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.retry-btn {
+  margin-top: 15px;
+  padding: 8px 20px;
+  background-color: var(--error-color);
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-.App-link {
-  color: #61dafb;
+.retry-btn:hover {
+  background-color: #d32f2f;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.success-message {
+  background-color: #e8f5e9;
+  color: var(--success-color);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--success-color);
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: var(--error-color);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--error-color);
+}
+
+.search-box {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+}
+
+.search-box button {
+  padding: 0 25px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.search-box button:hover {
+  background-color: var(--secondary-color);
+}
+
+.search-box button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.libro-detalle {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 25px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-info {
+  line-height: 1.8;
+}
+
+.detail-info p {
+  font-size: 1.05rem;
+}
+
+.instruction-box {
+  background-color: #e8f4ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.instruction-box p {
+  margin-bottom: 10px;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .search-container {
+    width: 100%;
+    margin-top: 15px;
   }
+  
+  .libros-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tabs-container {
+    flex-wrap: wrap;
+  }
+  
+  .tab-btn {
+    margin-bottom: 5px;
+  }
+}
+
+/* Agregar en App.css */
+.input-with-button {
+  display: flex;
+}
+
+.input-with-button input {
+  flex: 1;
+  border-radius: 5px 0 0 5px !important;
+  border-right: none;
+}
+
+.generate-guid-btn {
+  background-color: #5c6bc0;
+  color: white;
+  border: none;
+  padding: 0 15px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.generate-guid-btn:hover {
+  background-color: #3f51b5;
+}
+
+.generate-guid-btn:active {
+  background-color: #303f9f;
+}
+
+/* Si prefieres mantener el campo editable, quita esta regla */
+.input-with-button input[readonly] {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+/* Agregar en App.css */
+.input-error {
+  border-color: #f44336 !important;
+  box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2) !important;
+}
+
+.error-text {
+  color: #f44336;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-weight: 500;
 }
