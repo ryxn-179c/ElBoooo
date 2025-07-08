@@ -1,7 +1,7 @@
 // src/api/api.js
 import axios from 'axios';
 
-const API_BASE_URL = 'https://elboo.somee.com/api'; // URL correcta
+const API_BASE_URL = 'https://elboooo.somee.com/api'; // URL correcta
 
 export const crearAutor = async (autor) => {
   try {
