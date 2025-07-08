@@ -1,7 +1,7 @@
 // src/api/api.js
 import axios from 'axios';
 
-const API_BASE_URL = 'https://elbooo.somee.com/api';
+const API_BASE_URL = 'https://elboo.somee.com/api';
 
 export const crearAutor = (autor) => axios.post(`${API_BASE_URL}/Autor`, autor);
 export const obtenerAutores = () => axios.get(`${API_BASE_URL}/Autor`);
