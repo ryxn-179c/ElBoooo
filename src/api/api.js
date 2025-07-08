@@ -1,13 +1,21 @@
 // src/api/api.js
 import axios from 'axios';
 
-const API_BASE_URL = 'https://elboo.somee.com/api';
+const API_BASE_URL = 'https://elboo.somee.com/api'; // URL correcta
 
-export const crearAutor = (autor) => axios.post(`${API_BASE_URL}/Autor`, autor);
+export const crearAutor = async (autor) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/Autor`, autor);
+    return response.data;
+  } catch (error) {
+    console.error('❌ Error en crearAutor:', error.response || error.message);
+    throw error;
+  }
+};
+
 export const obtenerAutores = () => axios.get(`${API_BASE_URL}/Autor`);
 export const obtenerAutorPorId = (id) => axios.get(`${API_BASE_URL}/Autor/${id}`);
 
-// ✅ Buscar por valor único (nombre, apellido o ID)
 export const buscarAutores = async (valor) => {
   const response = await axios.get(`${API_BASE_URL}/Autor/buscar?valor=${valor}`);
   return response.data;
